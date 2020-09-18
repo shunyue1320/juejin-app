@@ -1,0 +1,15 @@
+{
+  "topbar": {
+    "home": "Home",
+    "pin": "Community",
+    "topic": "Topics",
+    "book": "Books",
+    "search": "Search"
+  },
+  "menu": {
+    "home": "My homepage",
+    "label": "Label management",
+    "logout": "Logout",
+    "login": "Login"
+  }
+}

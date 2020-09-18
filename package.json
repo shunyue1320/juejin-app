@@ -1,23 +1,36 @@
 {
-  "name": "my-nuxt",
+  "name": "y",
   "version": "1.0.0",
-  "description": "My world-class Nuxt.js project",
-  "author": "shunyue1320",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "devs": "cross-env NODE_ENV=development nodemon --inspect server/index.js --watch server",
+    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
-    "cross-env": "^5.2.0",
-    "express": "^4.16.4",
-    "element-ui": "^2.4.11",
-    "@nuxtjs/axios": "^5.3.6"
+    "@nuxtjs/axios": "^5.12.2",
+    "ant-design-vue": "^1.6.5",
+    "consola": "^2.15.0",
+    "cookie-universal-nuxt": "^2.1.4",
+    "cross-env": "^7.0.2",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-helmet": "^5.2.0",
+    "koa-router": "^9.4.0",
+    "koa2-cors": "^2.0.6",
+    "lodash": "^4.17.20",
+    "lru-cache": "^6.0.0",
+    "moment": "^2.28.0",
+    "nuxt": "^2.14.0",
+    "request": "^2.88.2",
+    "vue-i18n": "^8.21.0",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "@nuxtjs/style-resources": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2"
   }
 }
