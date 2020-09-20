@@ -1,18 +1,19 @@
-
+/**
+ * 公用触底事件
+ */
 export default {
   data() {
     return {
       _scrollingElement: null,
-      _isReachBootom: false,
-      _isReachBootomDistance: 80
+      _isReachBottom: false,
+      reachBottomDistance: 80 // 距离底部多远触发
     }
   },
   mounted() {
-    //获取滚动的页面
     this._scrollingElement = document.scrollingElement
     window.addEventListener('scroll', this._windowScrollHandler)
     this.$once('hook:beforeDestroy', () => {
-      window.removeEventListener('resize', this._windowScrollHandler)
+      window.removeEventListener('scroll', this._windowScrollHandler)
     })
   },
   methods: {

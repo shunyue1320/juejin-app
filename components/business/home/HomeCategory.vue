@@ -2,12 +2,7 @@
   <nav class="nav-view">
     <div class="nav-mian shadow" :class="{'nav-main--sticky': !isTopbarBlock}">
       <ul class="nav-list">
-        <li class="nav-item" 
-            :class="{'nav-item--active': item.category_url === paramsTitle}"
-            v-for="item in channels" :key="item.category_id"
-            @click="navItemClick(item)">
-            {{ item.category_name }}
-        </li>
+        <li class="nav-item" :class="{'nav-item--active': item.category_url === paramsTitle}" v-for="item in channels" :key="item.category_id" @click="navItemClick(item)">{{ item.category_name }}</li>
         <nuxt-link v-if="token" tag="li" to="/subscribe" class="nav-item" style="margin-left: auto;">标签管理</nuxt-link>
       </ul>
     </div>
@@ -15,8 +10,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations} from 'vuex'
-// $store.dispatch( ' isTopbarBlock' )
+import { mapState, mapMutations } from 'vuex'
 export default {
   props: {
     channels: {
@@ -25,14 +19,20 @@ export default {
     }
   },
   computed: {
-    ...mapState([ 'isTopbarBlock' ]),
-    ...mapState([ 'auth', [ 'toKen' ] ]),
-    ParamsTitle() {
+    ...mapState([
+      'isTopbarBlock'
+    ]),
+    ...mapState('auth', [
+      'token'
+    ]),
+    paramsTitle() {
       return this.$route.params.title || 'recommended'
     }
   },
   methods: {
-    ...mapMutations([ 'UPDATE_TOPBAR_BLOCK' ]),
+    ...mapMutations([
+      'UPDATE_TOPBAR_BLOCK'
+    ]),
     async getTagByCategories(categoryId) {
       await this.$api.getTagByCategories({
         categoryId,
@@ -40,17 +40,16 @@ export default {
       })
     },
     navItemClick(item) {
-      if (this.ParamsTitle == item.category_url) {
-        return
+      if (this.paramsTitle != item.category_url) {
+        this.isTopbarBlock === false && this.UPDATE_TOPBAR_BLOCK(true)
+        window.scrollTo({ top: 0 })
+        this.$router.push({
+          name: 'timeline-title',
+          params: {
+            title: item.category_url
+          }
+        })
       }
-      this.isTopbarBlock = false && this.UPDATE_TOPBAR_BLOCK(true)
-      window.scrollTo({ top: 0 })
-      this.$router.push({
-        name: 'index',
-        params: {
-          title: item.category_url
-        }
-      })
     }
   }
 }

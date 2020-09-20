@@ -1,6 +1,6 @@
 export default function ({ app: { $axios, $cookies } }) {
   $axios.defaults.baseURL = process.env.baseUrl
-  $axios.defaults.timeout = 30000
+  $axios.defaults.timeout = 3000
   $axios.interceptors.request.use(config => {  //设置请求头
     config.headers['X-Token'] = $cookies.get('token') || ''
 		config.headers['X-Device-Id'] = $cookies.get('clientId') || ''

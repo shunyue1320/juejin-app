@@ -4,7 +4,9 @@
     "pin": "Community",
     "topic": "Topics",
     "book": "Books",
-    "search": "Search"
+    "event": "events",
+    "search": "Search juejin",
+    "write": "write essays"
   },
   "menu": {
     "home": "My homepage",

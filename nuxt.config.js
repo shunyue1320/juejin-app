@@ -1,100 +1,73 @@
-const webpack = require('webpack')
 
-// export default {
 module.exports = {
-  /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'universal',
-  /*
-  ** Nuxt target
-  ** See https://nuxtjs.org/api/configuration-target
-  */
-  // target: 'server',
+  mode: 'universal',  //服务端+客服端渲染模式
   server: {
     port: 3000,
     host: '127.0.0.1'
   },
-
   env: {
     baseUrl: 'http://127.0.0.1:3000'
   },
-  /*
-  ** Headers of the page
-  ** See https://nuxtjs.org/api/configuration-head
-  */
- router: {
-  middleware: ['i18n'],
-  extendRoutes (routes, resolve) {
-    routes.push({
-      path: '/',
-      redirect: {
-        name: 'index'
-      }
-    })
-  }
-},
-
+  router: {
+    middleware: [ 'i18n' ],
+    extendRoutes (routes, resolve) {
+      routes.push({
+        path: '/',
+        redirect: {
+          name: 'home-title'
+        }
+      })
+    },
+    scrollBehavior: function (to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    }
+  },
   head: {
     title: '掘金',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover' },
+      { name: 'referrer', content: 'never'},
+      { hid: 'keywords', name: 'keywords', content: '掘金,稀土,Vue.js,微信小程序,Kotlin,RxJava,React Native,Wireshark,敏捷开发,Bootstrap,OKHttp,正则表达式,WebGL,Webpack,Docker,MVVM'},
+      { hid: 'description', name: 'description', content: '掘金是一个帮助开发者成长的社区，是给开发者用的 Hacker News，给设计师用的 Designer News，和给产品经理用的 Medium。掘金的技术文章由稀土上聚集的技术大牛和极客共同编辑为你筛选出最优质的干货，其中包括：Android、iOS、前端、后端等方面的内容。用户每天都可以在这里找到技术世界的头条内容。与此同时，掘金内还有沸点、掘金翻译计划、线下活动、专栏文章等内容。即使你是 GitHub、StackOverflow、开源中国的用户，我们相信你也可以在这里有所收获。'}
     ]
   },
-
+  loading: {
+    color: '#007fff'
+  },
   css: [
-    'ant-design-vue/dist/antd.css',
-    '~/assets/css/reset.css',
+    '~/assets/css/page-transition.css',    
+    '~/assets/scss/global.scss',
+    '~/assets/css/reset.css'
   ],
-
   plugins: [
-    '~/plugins/axios.js',
-    '~/plugins/request.js',
-    '~/plugins/api.js',
-    '~/plugins/i18n',
-    '~/plugins/antd-ui',
-    '~/plugins/vue-global',
+    '~/plugins/api/axios.js',
+    '~/plugins/api/request.js',
+    '~/plugins/api/api.js',
+    '~/plugins/vue-global.js',
+    '~/plugins/i18n.js',
   ],
-  /*
-  ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
-  */
-  // components: true,
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-  ],
-  /*
-  ** Nuxt.js modules  
-  */
   modules: [
-    '@nuxtjs/axios',           //注入$axios
-    'cookie-universal-nuxt',   //注入$cookie
-    '@nuxtjs/style-resources', //解析cass
+    '@nuxtjs/axios', 
+    '@nuxtjs/style-resources',
+    ['cookie-universal-nuxt', { parseJSON: true }]
   ],
-
   styleResources: {
     scss: [
       '~/assets/scss/variable.scss'
     ]
   },
-  /*
-  ** Build configuration
-  ** See https://nuxtjs.org/api/configuration-build/
-  */
   build: {
-    transpile: [/^ant-design-vue/],
-    plugins: [
-      new webpack.ProvidePlugin({
-        '_': 'lodash'  //js文件中使用
-      })
-    ]
+    babel: {
+      plugins: [
+        [
+          "component", //按需引入
+          {
+            "libraryName": "element-ui",
+            "styleLibraryName": "theme-chalk"
+          }
+        ]
+      ],
+    }
   }
 }

@@ -4,7 +4,9 @@
     "pin": "沸点",
     "topic": "话题",
     "book": "小册",
-    "search": "搜索"
+    "event": "活动",
+    "search": "搜索掘金",
+    "write": "写文章"
   },
   "menu": {
     "home": "我的主页",

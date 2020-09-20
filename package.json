@@ -1,20 +1,20 @@
 {
-  "name": "y",
+  "name": "juejin-app",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "devs": "cross-env NODE_ENV=development nodemon --inspect server/index.js --watch server",
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=development nodemon --inspect server/index.js --watch server",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
-    "ant-design-vue": "^1.6.5",
+    "async-validator": "^3.4.0",
     "consola": "^2.15.0",
     "cookie-universal-nuxt": "^2.1.4",
     "cross-env": "^7.0.2",
+    "element-ui": "^2.13.2",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "koa-helmet": "^5.2.0",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
+    "babel-plugin-component": "^1.1.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.2"
   }
