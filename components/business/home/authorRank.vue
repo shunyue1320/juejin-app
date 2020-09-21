@@ -4,12 +4,12 @@
     <nuxt-link :to="'/user/'+item.user_id" target="_blank" v-for="item in list" :key="item.user_id">
       <div class="author-item">
         <div class="author__avatar">
-          <user-avatar :url="item.avatar_large" :round="true"></user-avatar>
+          <UserAvatar :url="item.avatar_large" :round="true" />
         </div>
         <div class="author__info">
           <div class="author__name">
             {{ item.user_name }}
-            <level :level="item.level"></level>
+            <Level :level="item.level" />
           </div>
           <div class="ellipsis">
             {{ item.job_title }}

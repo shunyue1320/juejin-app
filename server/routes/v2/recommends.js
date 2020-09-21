@@ -35,7 +35,7 @@ router.get('/recommendAuthor', validator({
 })
 
 /**
- * 推荐小册
+ * 推荐小册 官方废弃
  */
 router.get('/books', async (ctx, next) => {
   const headers = ctx.headers

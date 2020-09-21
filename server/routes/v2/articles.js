@@ -30,7 +30,7 @@ router.get('/detail', validator({
  * @param {string} sort_type - 0：全部、3：三天内、7：7天内、30：30天内、200：热门、300：最新
  * @param {string} feed_type - all：推荐，cate：分类
  */
-router.post('/indexList', validator({
+router.post('/recommendFeed', validator({
   cate_id: { 
     type: 'string'
   },

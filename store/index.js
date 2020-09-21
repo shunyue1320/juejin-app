@@ -1,10 +1,10 @@
 export default {
   state: () => ({
-    isTopbarBlock: true, // 顶部栏是否显示
+    visible: true, // 顶部栏是否显示
   }),
   mutations: {
-    UPDATE_TOPBAR_BLOCK(state, payload){
-      state.isTopbarBlock = payload
+    UPDATE_HEADER_VISIBLE(state, payload){
+      state.visible = payload
     }
   }
 }

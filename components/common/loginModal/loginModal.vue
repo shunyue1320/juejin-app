@@ -1,17 +1,17 @@
 <template>
-  <div class="login-modal-container">
+  <div class="auth-modal-box">
     <div class="login-form">
       <div class="panfish">
-        <img v-show="currentFocus===''" src="https://b-gold-cdn.xitu.io/v3/static/img/normal.0447fe9.png" class="normal">
-        <img v-show="currentFocus==='phoneNumber'" src="https://b-gold-cdn.xitu.io/v3/static/img/greeting.1415c1c.png" class="greeting">
-        <img v-show="currentFocus==='password'" src="https://b-gold-cdn.xitu.io/v3/static/img/blindfold.58ce423.png" class="blindfold">
+        <img v-show="currentFocus===''" class="normal" src="https://b-gold-cdn.xitu.io/v3/static/img/normal.0447fe9.png">
+        <img v-show="currentFocus==='phoneNumber'" class="greeting" src="https://b-gold-cdn.xitu.io/v3/static/img/greeting.1415c1c.png">
+        <img v-show="currentFocus==='password'" class="blindfold" src="https://b-gold-cdn.xitu.io/v3/static/img/blindfold.58ce423.png">
       </div>
-      <div class="login-pancel">
-        <h1 class="title">登录</h1>
+      <div class="pancel">
+        <h1 class="title">账密登录</h1>
         <i title="关闭" class="close-btn el-icon-close" @click="cancel"></i>
         <el-input class="phoneNumber-input" v-model="phoneNumber" placeholder="请输入手机号或邮箱" maxlength="64" @focus="currentFocus='phoneNumber'" @blur="currentFocus=''"></el-input>
         <el-input class="password-input" v-model="password" type="password" placeholder="请输入密码" maxlength="64" @focus="currentFocus='password'" @blur="currentFocus=''" @keydown.enter.native="login"></el-input>
-        <el-button style="width:100%;margin-top:10px" :loading="loginLoading" type="primary" @click="login">登录</el-button>
+        <el-button :loading="loginLoading" type="primary" @click="login">登录</el-button>
       </div>
     </div>
   </div>
@@ -78,21 +78,21 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.login-modal-container{
-  z-index: 1000;
+.auth-modal-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: rgba(0,0,0,.2);
+  z-index: 500;
 
   .login-form{
     position: relative;
-    width: 318px;
+    width: 20rem;
     background-color: #fff;
     border-radius: 2px;
   }
@@ -102,7 +102,7 @@ export default {
       position: absolute;
       top: 0;
       left: 50%;
-      width: 120px;
+      width: 8rem;
       transform: translate(-50%,-83%);
       z-index: 1;
     }
@@ -111,7 +111,7 @@ export default {
       position: absolute;
       top: 0;
       left: 50%;
-      width: 120px;
+      width: 8rem;
       transform: translate(-50%,-75.8%);
       z-index: 1;
     }
@@ -120,28 +120,27 @@ export default {
       position: absolute;
       top: 0;
       left: 50%;
-      width: 104px;
+      width: 7rem;
       transform: translate(-50%,-75%);
       z-index: 1;
     }
   }
 
-  .login-pancel{
+  .pancel{
     position: relative;
-    padding: 22px;
+    padding: 1.3rem;
 
     .title{
-      margin-bottom: 30px;
-      font-size: 18px;
+      margin-bottom: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #333;
     }
 
     .close-btn{
       position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 3px;
+      top: 1.3rem;
+      right: 1.3rem;
       color: #bbb;
       font-weight: 600;
       cursor: pointer;
@@ -149,22 +148,16 @@ export default {
 
     .phoneNumber-input,
     .password-input{
-      margin-bottom: 8px;
+      margin-bottom: 0.5rem;
 
       /deep/ input::placeholder{
         color: #999;
       }
     }
 
-    .submit-btn{
-      margin-top: 5px;
-      padding: 12px;
-      background-color: $theme;
-      color: #fff;
-      text-align: center;
-      font-size: 14px;
-      border-radius: 2px;
-      cursor: pointer;
+    button {
+      width: 100%;
+      margin-top: 0.6rem;
     }
   }
 }

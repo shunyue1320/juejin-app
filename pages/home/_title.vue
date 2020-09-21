@@ -1,7 +1,7 @@
 <template>
   <div>
     <HomeCategory :channels="homeCategoryList" />
-    <!-- <div class="index-container">
+    <div class="index-container">
       <div class="index-main shadow">
         <div class="list__header">
           <ul class="list__nav">
@@ -12,30 +12,25 @@
             </el-select>
           </ul>
         </div>
-        <artic-list :list="list"></artic-list>
+        <ArticList :list="list" />
       </div>
       <div class="index-side">
-        <author-rank :list="recommendAuthors"></author-rank>
-        <recommend-book :list="recommendBooks"></recommend-book>
+        <AuthorRank :list="recommendAuthors" />
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
 import { mapState } from 'vuex'
-// import reachBottom from '~/mixins/reachBottom'
-// import authorRank from '~/components/business/home/authorRank'
-// import recommendBook from '~/components/business/home/recommendBook'
+import reachBottom from '~/mixins/reachBottom'
 
 export default {
-  // mixins: [reachBottom],
+  mixins: [ reachBottom ],
   components: {
-    // 'author-rank': authorRank,
-    // 'recommend-book': recommendBook,
-    
-    HomeCategory: require('~/components/business/home/HomeCategory').default
+    'AuthorRank': require('~/components/business/home/AuthorRank').default,
+    'HomeCategory': require('~/components/business/home/HomeCategory').default
   },
   async asyncData({ app, params, store }) {
     let homeCategoryList = [ { category_id: 0, category_name: '推荐', category_url: 'recommended' } ]
@@ -47,9 +42,9 @@ export default {
     }
 
     let currentCategoryItem = _.find(homeCategoryList, [ 'category_url', 'recommended' ]) || homeCategoryList[0]
-    let [ indexData, recommendAuthors, recommendBooks ] = await Promise.all([
+    let [ recommendFeedList, recommendAuthors ] = await Promise.all([
       // 文章列表
-      app.$api.getIndexList({
+      app.$api.getRecommendFeedList({
         cate_id: currentCategoryItem.category_id || '',
         limit: 20,
         sort_type: 200,
@@ -58,21 +53,17 @@ export default {
       // 推荐作者
       app.$api.getRecommendAuthor({
         limit: 5
-      }).then(res => res.err_no == 0 ? res.data : []),
-      // 推荐小册
-      app.$api.getRecommendBook().then(res => res.s === 1 ? res.d.data : [])
+      }).then(res => res.err_no == 0 ? res.data : [])
     ])
-    console.log('recommendBooks', recommendBooks);
 
     return {
-      recommendBooks,
       recommendAuthors,
       homeCategoryList,
       currentCategoryItem,
-      list: indexData.data || [],
+      list: recommendFeedList.data || [],
       pageInfo: {                     //列表下一页信息
-        cursor: indexData.cursor,
-        has_more: indexData.has_more
+        cursor: recommendFeedList.cursor,
+        has_more: recommendFeedList.has_more
       }
     }
   },
@@ -157,6 +148,7 @@ export default {
 <style lang="scss" scoped>
 .index-container{
   display: flex;
+  margin-top: 8rem;
 
   .index-main{
     width: 700px;

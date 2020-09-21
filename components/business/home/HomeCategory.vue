@@ -1,11 +1,9 @@
 <template>
-  <nav class="nav-view">
-    <div class="nav-mian shadow" :class="{'nav-main--sticky': !isTopbarBlock}">
-      <ul class="nav-list">
-        <li class="nav-item" :class="{'nav-item--active': item.category_url === paramsTitle}" v-for="item in channels" :key="item.category_id" @click="navItemClick(item)">{{ item.category_name }}</li>
-        <nuxt-link v-if="token" tag="li" to="/subscribe" class="nav-item" style="margin-left: auto;">标签管理</nuxt-link>
-      </ul>
-    </div>
+  <nav class="view-nav" role="navigation" :class="{'visible': !visible}">
+    <ul class="nav-list">
+      <li class="nav-item" :class="{'nav-item--active': item.category_url === paramsTitle}" v-for="item in channels" :key="item.category_id" @click="navItemClick(item)">{{ item.category_name }}</li>
+      <li class="nav-item"><nuxt-link v-if="!token" to="/subscribe" class="nav-item">标签管理</nuxt-link></li>
+    </ul>
   </nav>
 </template>
 
@@ -20,7 +18,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'isTopbarBlock'
+      'visible'
     ]),
     ...mapState('auth', [
       'token'
@@ -31,7 +29,7 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'UPDATE_TOPBAR_BLOCK'
+      'UPDATE_HEADER_VISIBLE'
     ]),
     async getTagByCategories(categoryId) {
       await this.$api.getTagByCategories({
@@ -41,7 +39,7 @@ export default {
     },
     navItemClick(item) {
       if (this.paramsTitle != item.category_url) {
-        this.isTopbarBlock === false && this.UPDATE_TOPBAR_BLOCK(true)
+        this.visible === false && this.UPDATE_HEADER_VISIBLE(true)
         window.scrollTo({ top: 0 })
         this.$router.push({
           name: 'timeline-title',
@@ -56,43 +54,50 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.nav-view{
-  height: 45px;
-}
-
-.nav-mian{
-  z-index: 999;
+.view-nav {
   position: fixed;
+  top: 4rem;
   left: 0;
-  top: 60px;
   width: 100%;
+  height: 3rem;
   background: #fff;
-  border-top: 1px solid #eee;
+  z-index: 100;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
   transition: all .2s;
 
-  &.nav-main--sticky{
-    top: 0px;
+  &.visible{
+    top: 0;
   }
-}
 
-.nav-list{
-  display: flex;
-  width: 960px;
-  margin: 0 auto;
-
-  .nav-item{
-    padding: 15px 0;
-    font-size: 14px;
+  .nav-list {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    max-width: 960px;
+    height: 100%;
+    margin: auto;
     color: #71777c;
-    cursor: pointer;
+    font-size: 0.85rem;
 
-    &.nav-item--active,
-    &:hover{
-      color: $theme;
-    }
+    .nav-item{
+      display: flex;
+      align-items: center;
+      height: 100%;
+      flex-shrink: 0;
+      padding: 0 0.8rem;
+      cursor: pointer;
 
-    &:not(:last-child){
-      margin-right: 24px;
+      &:hover,
+      &.nav-item--active {
+        color: $theme;
+      }
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+        margin-left: auto;
+      }
     }
   }
 }

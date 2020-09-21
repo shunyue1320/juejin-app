@@ -1,9 +1,9 @@
 <template>
-  <div style="background-color: #f4f4f4;min-height: 200vh;">
-    <top-bar></top-bar>
-    <main class="main">
+  <div id="juejin" style="min-height: 200vh;">
+    <MainHeader />
+    <main class="container">
       <nuxt />
     </main>
-    <back-top></back-top>
+    <GlobalComponentBox />
   </div>
 </template>

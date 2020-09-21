@@ -22,8 +22,8 @@ export default ({ app: { $request } }, inject) => {
      * @param {string} sort_type - 0：全部、3：三天内、7：7天内、30：30天内、200：热门、300：最新
      * @param {string} feed_type - all：推荐，cate：分类
      */
-    getIndexList (data = {}) {
-      return $request.post('/v2/articles/indexList', data)
+    getRecommendFeedList (data = {}) {
+      return $request.post('/v2/articles/recommendFeed', data)
     },
     /**
      * 搜索
@@ -264,7 +264,7 @@ export default ({ app: { $request } }, inject) => {
       return $request.get('/v2/books/getBookList', params)
     },
     /**
-     * 推荐小册
+     * 推荐小册 官方废弃
      */
     getRecommendBook() {
       return $request.get('/v2/recommends/books')
