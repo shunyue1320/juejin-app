@@ -3,6 +3,20 @@ moment.locale('zh-CN');
 
 export default {
   /**
+   * 路由跳转
+   * @param {object} ctx - 服务端传入context 客户端传入this
+   * @param {string} url 
+   */
+  forward(ctx, url) {
+    const { redirect } = ctx
+    if (process.client || url.includes('://')) {
+      redirect('url')
+    } else {
+      const base = ctx.base != '/' ? ctx.base : ''
+      redirect(`${base}${url}`)
+    }
+  },
+  /**
    * 格式化时间
    * @param {number} timestamp - 13位时间戳
    */

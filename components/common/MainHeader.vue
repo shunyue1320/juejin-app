@@ -90,9 +90,9 @@ export default {
     return {
       navs: [
         { name: 'home',  link: '/home' },
-        { name: 'pin',   link: '/pins/recommended' },
+        { name: 'pin',   link: '/pins' },
         { name: 'topic', link: '/topic' },
-        { name: 'book',  link: '/book' },
+        { name: 'book',  link: '/books' },
         { name: 'event',  link: '/events/all' }
       ],
       keyword: '',

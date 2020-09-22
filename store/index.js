@@ -1,10 +1,14 @@
 export default {
   state: () => ({
     visible: true, // 顶部栏是否显示
+    pinsPath: '/recommended'  //默认路径
   }),
   mutations: {
-    UPDATE_HEADER_VISIBLE(state, payload){
-      state.visible = payload
+    UPDATE_HEADER_VISIBLE(state, boole){
+      state.visible = boole
+    },
+    UPDATE_PINSPATH(state, path){
+      state.pinsPath = path
     }
   }
 }
