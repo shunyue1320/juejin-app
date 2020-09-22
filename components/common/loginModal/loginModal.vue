@@ -9,8 +9,8 @@
       <div class="pancel">
         <h1 class="title">账密登录</h1>
         <i title="关闭" class="close-btn el-icon-close" @click="cancel"></i>
-        <el-input class="phoneNumber-input" v-model="phoneNumber" placeholder="请输入手机号或邮箱" maxlength="64" @focus="currentFocus='phoneNumber'" @blur="currentFocus=''"></el-input>
-        <el-input class="password-input" v-model="password" type="password" placeholder="请输入密码" maxlength="64" @focus="currentFocus='password'" @blur="currentFocus=''" @keydown.enter.native="login"></el-input>
+        <el-input class="input-phoneNumber" v-model="phoneNumber" placeholder="请输入手机号或邮箱" maxlength="64" @focus="currentFocus='phoneNumber'" @blur="currentFocus=''"></el-input>
+        <el-input class="input-password" v-model="password" type="password" placeholder="请输入密码" maxlength="64" @focus="currentFocus='password'" @blur="currentFocus=''" @keydown.enter.native="login"></el-input>
         <el-button :loading="loginLoading" type="primary" @click="login">登录</el-button>
       </div>
     </div>
@@ -47,7 +47,8 @@ export default {
         return
       }
       this.loginLoading = true
-      let res = await this.ctx.$api.loginAuth({ //登录
+      //登录
+      let res = await this.ctx.$api.loginAuth({
         phoneNumber: this.phoneNumber,
         password: this.password
       })
@@ -146,8 +147,8 @@ export default {
       cursor: pointer;
     }
 
-    .phoneNumber-input,
-    .password-input{
+    .input-phoneNumber,
+    .input-password{
       margin-bottom: 0.5rem;
 
       /deep/ input::placeholder{

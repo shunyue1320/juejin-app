@@ -17,13 +17,22 @@ phoneNumber: { type: 'string', required: true }
 }), async (ctx) => {
   const options = {
     url: 'https://juejin.im/auth/type/phoneNumber',
+    // url: 'https://juejin.im/passport/web/user/login/?account_sdk_source=web',
     method: 'POST',
     body: {
       password: ctx.request.body.password,
       phoneNumber: ctx.request.body.phoneNumber
+      // account: '2e3d33343030323c333631303032',
+      // password: '423232303d37303d',
+      // captcha: '',
+      // aid: 2608,
+      // is_sso: false,
+      // host: '',
+      // mix_mode: 1
     }
   }
   let { body } = await request(options) //交给 request 去发起请求
+  console.log("body:::", body);
   ctx.body = body
 })
 

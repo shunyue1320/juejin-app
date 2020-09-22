@@ -1,6 +1,7 @@
 
 module.exports = {
   mode: 'universal',  //服务端+客服端渲染模式
+  telemetry: false,   //禁用nuxtjs开启询问
   server: {
     port: 3000,
     host: '127.0.0.1'
