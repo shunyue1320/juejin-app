@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  async fetch({ store, app, redirect }) {
-    redirect(`/pins${store.state.pinsPat}`)
-  }  
+  async fetch({ store, redirect }) {
+    redirect(`/pins${store.state.pinsPath}`)
+  }
 }
 </script>

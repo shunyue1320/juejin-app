@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="pin-item-wrap shadow" v-for="(item, index) in pinList" :key="item.msg_id">
-      <!-- <pin-item :item.sync="pinList[index]"></pin-item> -->
-      {{ index }}
-    </div>
+    <nuxt-link to="/pins/topic/1111">gototopic</nuxt-link>
   </div>
 </template>
 
@@ -12,11 +9,25 @@ import { mapState } from 'vuex'
 import reachBottom from '~/mixins/reachBottom'
 
 export default {
-  async asyncData({ app, params }) {
+  async asyncData({ app, store }) {
+    let [ recommendPins, recommendTopics ] = await Promise.all([
+      app.$api.getPinList({
+        type: 'hot',
+        limit: 20,
+        sort_type: 400
+      }),
+      app.$api.getRecommendTopics({
+        limit: 7
+      })
+    ])
+
     return {
-      pinList: [],
-      pageInfo: {}
+      recommendPins,
+      recommendTopics
     }
+  },
+  created() {
+
   }
 }
 </script>
