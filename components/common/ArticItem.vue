@@ -2,12 +2,6 @@
   <div class="artic-item" @click="toDetail()">
     <div class="artic-item__info">
       <ul class="artic-item__meta">
-        <!-- <li class="meta-item mate-item--hot" v-if="item.type === 'post' && item.hot">
-          <span>荐</span>
-        </li>
-        <li class="meta-item mate-item--post" v-if="item.type === 'post'">
-          <span>专栏</span>
-        </li> -->
         <li class="meta-item">
           <span class="meta-item__username">
             <nuxt-link :to="'/user/'+uid" target="_blank" @click.native="(e) => e.stopPropagation()">{{ item.author_user_info.user_name }}</nuxt-link>

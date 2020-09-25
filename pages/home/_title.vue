@@ -2,7 +2,7 @@
   <div>
     <HomeCategory :channels="homeCategoryList" />
     <div class="index-container">
-      <div class="index-main shadow">
+      <div class="index-main">
         <div class="list__header">
           <ul class="list__nav">
             <li class="list__nav-item" :class="{'list__nav-item--active': item.id == navId}" v-for="item in navs" :key="item.title" @click="changeNavType(item)">{{ item.title }}</li>
@@ -89,9 +89,6 @@ export default {
       isReachBottomFetching: false,  // 防止触底多次请求
     };
   },
-  // computed: {
-  //   ...mapState('category', ['homeCategoryList']),
-  // },
   methods: {
     reachBottom() {
       if (this.pageInfo.has_more) {
@@ -126,7 +123,7 @@ export default {
       if (isLoadMore) {
         params.cursor = this.pageInfo.cursor || ''
       }
-      let res = await this.$api.getIndexList(params);
+      let res = await this.$api.getRecommendFeedList(params);
       if (res.err_no == 0) {
         this.list = isLoadMore ? this.list.concat(res.data) : res.data
         this.pageInfo = {
@@ -146,19 +143,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.index-container{
+.index-container {
   display: flex;
   margin-top: 8rem;
 
-  .index-main{
+  .index-main {
     width: 700px;
     margin-right: 20px;
     background: #fff;
     border-radius: 2px;
   }
 
-  .index-side{
+  .index-side {
     width: 240px;
+  }
+
+  @media (max-width: 980px) {
+    .index-main {
+      width: 90%;
+      margin: 0 auto;
+    }
+    .index-side {
+      display: none;
+    }
   }
 }
 .list__header{

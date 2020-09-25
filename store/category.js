@@ -17,6 +17,9 @@ export default {
     ]
   }),
   mutations: {
+    UPDATE_PIN_CATEGORY_LIST(state, payload){
+      state.pinCategoryList.push(...payload)
+    },
     UPDATE_HOME_CATEGORY_LIST(state, payload){
       state.homeCategoryList = payload
     },

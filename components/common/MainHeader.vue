@@ -88,13 +88,6 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      navs: [
-        { name: 'home',  link: '/home' },
-        { name: 'pin',   link: '/pins' },
-        { name: 'topic', link: '/topic' },
-        { name: 'book',  link: '/books' },
-        { name: 'event',  link: '/events/all' }
-      ],
       keyword: '',
       scrollingElement: null,
       searchFormClass: '',
@@ -120,7 +113,16 @@ export default {
     })
   },
   computed: {
-    ...mapState([ 'visible' ]),
+    ...mapState([ 'visible', 'pinsPath' ]),
+    navs() {
+      return [
+        { name: 'home',  link: '/home' },
+        { name: 'pin',   link: this.pinsPath },
+        { name: 'topic', link: '/topics' },
+        { name: 'book',  link: '/books' },
+        { name: 'event',  link: '/events/all' }
+      ]
+    },
     ...mapState('auth', [
       'userInfo'
     ]),
@@ -161,10 +163,15 @@ export default {
       })
     },
     async getUserNotificationNum(){
-      let res = await this.$api.getUserNotificationNum()
-      if (res.s === 1) {
-        this.noticeNum = res.d.notification_num
+      try {
+        let res = await this.$api.getUserNotificationNum()
+        if (res.s === 1) {
+          this.noticeNum = res.d.notification_num
+        }
+      } catch(error) {
+        this.noticeNum = 0
       }
+      
     },
     showLoginModal() {
       this.$loginModal(this)

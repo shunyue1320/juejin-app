@@ -17,12 +17,8 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'visible'
-    ]),
-    ...mapState('auth', [
-      'token'
-    ]),
+    ...mapState([ 'visible' ]),
+    ...mapState('auth', [ 'token' ]),
     paramsTitle() {
       return this.$route.params.title || 'recommended'
     }
