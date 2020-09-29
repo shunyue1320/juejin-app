@@ -29,3 +29,7 @@ $ yarn install
 # serve with hot reload at localhost:3000
 $ yarn dev
 ```
+# 效果图：
+![juejin-app效果图](https://images.gitee.com/uploads/images/2020/0929/222659_0e3c2300_5680075.png "1.png")
+# 动态效果图：
+![juejin-app动态效果图](https://images.gitee.com/uploads/images/2020/0929/223743_a11a5ff4_5680075.gif "2.gif")
