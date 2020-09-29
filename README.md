@@ -32,4 +32,4 @@ $ yarn dev
 # 效果图：
 ![juejin-app效果图](https://images.gitee.com/uploads/images/2020/0929/222659_0e3c2300_5680075.png)
 # 动态效果图：
-<img width="100%" src="https://images.gitee.com/uploads/images/2020/0929/223743_a11a5ff4_5680075.gif" alt="juejin-app动态效果图">
+![juejin-app动态效果图](https://github.com/shunyue1320/juejin-app/blob/master/1.gif)
