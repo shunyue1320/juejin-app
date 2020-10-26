@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://vuepress.vuejs.org/" target="_blank">
+  <a href="https://github.com/shunyue1320/juejin-app" target="_blank">
     <img width="180" src="https://b-gold-cdn.xitu.io/v3/static/img/logo.a7995ad.svg" alt="logo">
   </a>
 </p>
