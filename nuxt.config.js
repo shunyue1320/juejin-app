@@ -1,14 +1,12 @@
 
 module.exports = {
-  mode: 'universal',  //服务端+客服端渲染模式
-  telemetry: false,   //禁用nuxtjs开启询问
-  server: {
-    port: 3000,
-    host: '127.0.0.1'
-  },
+  mode: 'universal',
+  telemetry: false,
+  server: { port: 3000 },
   env: {
     baseUrl: 'http://127.0.0.1:3000'
   },
+  dev: process.env.NODE_ENV !== 'production',
   router: {
     middleware: [ 'i18n' ],
     extendRoutes (routes, resolve) {
@@ -62,7 +60,7 @@ module.exports = {
     babel: {
       plugins: [
         [
-          "component", //按需引入
+          "component",
           {
             "libraryName": "element-ui",
             "styleLibraryName": "theme-chalk"

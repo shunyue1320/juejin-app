@@ -10,7 +10,6 @@ const app = new Koa()
 const router = new Router()
 
 const config = require('../nuxt.config.js')
-config.dev = app.env !== 'production'
 
 function useMiddleware() {
   app.use(helmet())      //提供了重要的安全标头，默认情况下使您的应用程序更安全
@@ -31,7 +30,7 @@ function useMiddleware() {
 function useRouter(path) {
   path = path || __dirname + '/routes'       //递归后：C:.../routes/v2
   //注册路由
-  let urls = fs.readdirSync(path) //返回文件名 递归后：[ 'xxx.js', 'xx.js' ]
+  let urls = fs.readdirSync(path)            //返回文件名 递归后：[ 'xxx.js', 'xx.js' ]
   urls.forEach((element) => {
     const elementPath = path + '/' + element // 第二次'.../routes/v2/xxx.js'
     const stat = fs.lstatSync(elementPath)   //读取每个文件的信息
@@ -48,8 +47,6 @@ function useRouter(path) {
   //使用路由  allowedMethods：当用post请求get接口时提供报错
   app.use(router.routes()).use(router.allowedMethods()) 
 }
-
-
 
 async function start() {
   const nuxt = new Nuxt(config)
@@ -77,7 +74,7 @@ async function start() {
 
   app.listen(port, host)
   consola.ready({
-    message: `我Server listening on http://${host}:${port}`,
+    message: `Server listening on http://${host}:${port}`,
     badge: true
   })
 }
