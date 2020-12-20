@@ -23,12 +23,41 @@ An Front-end technology sharing and exchange.
 ## Run the project 
 
 ```bash
-# install dependencies
+# 安装依赖
 $ yarn install
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+# 开发环境运行 localhost:3000
+$ yarn run dev
 ```
+
+## build
+```bash
+# 打包项目
+yarn run build
+
+# 运行打包后项目
+yarn run start
+```
+
+## Pm2: project go online using pm2
+```bash
+# 打包项目
+yarn run build
+
+# 运行打包后项目
+pm2 start npm --name "myjuejin" -- run "start"
+```
+
+## Docker: project go online using docker
+```bash
+# 制定docker镜像
+docker bulid -t myjuejin .
+
+# docker上线项目
+docker run -p 3000:3000 myjuejin
+```
+
+
 # 效果图：
 ![juejin-app效果图](https://images.gitee.com/uploads/images/2020/0929/222659_0e3c2300_5680075.png)
 # 动态效果图：
