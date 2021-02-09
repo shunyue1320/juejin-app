@@ -9,7 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/axios": "^5.12.4",
     "async-validator": "^3.4.0",
     "consola": "^2.15.0",
     "cookie-universal-nuxt": "^2.1.4",
